@@ -13,6 +13,13 @@
 		9B7A273B20B908E900AE3C57 /* GameOfThronesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A273A20B908E900AE3C57 /* GameOfThronesTests.swift */; };
 		9B7A274620B908E900AE3C57 /* GameOfThronesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A274520B908E900AE3C57 /* GameOfThronesUITests.swift */; };
 		9B7A275820B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A275720B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift */; };
+		9B7A275C20B90E4000AE3C57 /* GOTNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A275B20B90E4000AE3C57 /* GOTNetworkService.swift */; };
+		9B7A275E20B937BD00AE3C57 /* GOTAPINetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A275D20B937BD00AE3C57 /* GOTAPINetworkService.swift */; };
+		9B7A276120B93D3500AE3C57 /* GOTHouseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */; };
+		9B7A276320B93E7C00AE3C57 /* GOTCharacterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276220B93E7C00AE3C57 /* GOTCharacterDataModel.swift */; };
+		9B7A276520B9432D00AE3C57 /* GOTDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */; };
+		9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */; };
+		9B7A276D20B945C000AE3C57 /* Array+DataModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +52,13 @@
 		9B7A274520B908E900AE3C57 /* GameOfThronesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfThronesUITests.swift; sourceTree = "<group>"; };
 		9B7A274720B908E900AE3C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B7A275720B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTHouseListCollectionViewController.swift; sourceTree = "<group>"; };
+		9B7A275B20B90E4000AE3C57 /* GOTNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTNetworkService.swift; sourceTree = "<group>"; };
+		9B7A275D20B937BD00AE3C57 /* GOTAPINetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTAPINetworkService.swift; sourceTree = "<group>"; };
+		9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTHouseDataModel.swift; sourceTree = "<group>"; };
+		9B7A276220B93E7C00AE3C57 /* GOTCharacterDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTCharacterDataModel.swift; sourceTree = "<group>"; };
+		9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTDataModelProtocol.swift; sourceTree = "<group>"; };
+		9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+DataModelParser.swift"; sourceTree = "<group>"; };
+		9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+DataModelParser.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +112,7 @@
 				9B7A275320B909A200AE3C57 /* Controllers */,
 				9B7A275620B909BD00AE3C57 /* Models */,
 				9B7A275420B909AD00AE3C57 /* Services */,
+				9B7A275F20B93C5600AE3C57 /* Utils */,
 				9B7A275520B909B400AE3C57 /* Views */,
 				9B7A272520B908E900AE3C57 /* AppDelegate.swift */,
 				9B7A272C20B908E900AE3C57 /* Assets.xcassets */,
@@ -136,6 +151,8 @@
 		9B7A275420B909AD00AE3C57 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9B7A275D20B937BD00AE3C57 /* GOTAPINetworkService.swift */,
+				9B7A275B20B90E4000AE3C57 /* GOTNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -150,8 +167,20 @@
 		9B7A275620B909BD00AE3C57 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9B7A276220B93E7C00AE3C57 /* GOTCharacterDataModel.swift */,
+				9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */,
+				9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9B7A275F20B93C5600AE3C57 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */,
+				9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,7 +316,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B7A276120B93D3500AE3C57 /* GOTHouseDataModel.swift in Sources */,
+				9B7A275E20B937BD00AE3C57 /* GOTAPINetworkService.swift in Sources */,
 				9B7A272620B908E900AE3C57 /* AppDelegate.swift in Sources */,
+				9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */,
+				9B7A276520B9432D00AE3C57 /* GOTDataModelProtocol.swift in Sources */,
+				9B7A275C20B90E4000AE3C57 /* GOTNetworkService.swift in Sources */,
+				9B7A276320B93E7C00AE3C57 /* GOTCharacterDataModel.swift in Sources */,
+				9B7A276D20B945C000AE3C57 /* Array+DataModelParser.swift in Sources */,
 				9B7A275820B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

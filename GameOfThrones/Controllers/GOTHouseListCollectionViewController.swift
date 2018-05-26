@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class GOTHouseListCollectionViewController: UICollectionViewController {
     
+    private var houses: [GOTHouseDataModel]?
+    
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewLayout.init())
     }
@@ -31,25 +33,17 @@ class GOTHouseListCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
         self.collectionView?.backgroundColor = UIColor.red
         
+        GOTAPINetworkService.shared.fetchHouseList(withPage: 2, pageSize: 10) { (houseDicts, error) in
+            if let houses = houseDicts?.dataModels(withType: GOTHouseDataModel.self) {
+                self.houses = houses
+            }
+        }
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
