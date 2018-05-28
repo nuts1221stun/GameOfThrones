@@ -8,14 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class GOTHouseListCollectionViewController: UICollectionViewController {
+class GOTHouseListCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private var houses: [GOTHouseDataModel]?
+    private var houses = [GOTHouseDataModel]()
+    private var isFetchComplete = false
     
     convenience init() {
-        self.init(collectionViewLayout: UICollectionViewLayout.init())
+        self.init(collectionViewLayout: UICollectionViewFlowLayout.init())
     }
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -34,67 +33,82 @@ class GOTHouseListCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView?.backgroundColor = UIColor.red
+        self.collectionView!.register(GOTTextCell.self, forCellWithReuseIdentifier: GOTTextCell.reuseIdentifier())
+        self.collectionView?.backgroundColor = UIColor.white
         
-        GOTAPINetworkService.shared.fetchHouseList(withPage: 2, pageSize: 10) { (houseDicts, error) in
+        self.fetchHouseList()
+    }
+    
+    func fetchHouseList() {
+        if isFetchComplete {
+            return
+        }
+        let page = Int(floor(Double(self.houses.count) / 10)) + 1
+        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: 10) { [weak weakSelf = self] (houseDicts, error) in
             if let houses = houseDicts?.dataModels(withType: GOTHouseDataModel.self) {
-                self.houses = houses
+                if houses.count < 10 {
+                    weakSelf?.isFetchComplete = true
+                }
+                weakSelf?.houses += houses
+                DispatchQueue.main.async {
+                    weakSelf?.collectionView?.reloadData()
+                }
             }
         }
-        
     }
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.houses.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GOTTextCell.reuseIdentifier(), for: indexPath)
+        
+        guard let textCell = cell as? GOTTextCell else {
+            return cell
+        }
+        let house = self.houses[indexPath.item]
+        textCell.populate(with: house)
     
-        // Configure the cell
+        return textCell
+    }
     
-        return cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let house = self.houses[indexPath.item]
+        return GOTTextCell.sizeThatFits(CGSize.init(width: collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude), dataModel: house)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 8, left: 0, bottom: 8, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
     }
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let house = self.houses[indexPath.item]
+        let vc = GOTHouseCollectionViewController.init(house: house)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if self.houses.count - indexPath.item > 1 {
+            return
+        }
+        self.fetchHouseList()
     }
-    */
-
 }

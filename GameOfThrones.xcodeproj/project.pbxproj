@@ -20,6 +20,14 @@
 		9B7A276520B9432D00AE3C57 /* GOTDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */; };
 		9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */; };
 		9B7A276D20B945C000AE3C57 /* Array+DataModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */; };
+		9BA5841B20BAF3A50004F35E /* String+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5841A20BAF3A50004F35E /* String+Sizing.swift */; };
+		9BA5842820BC306B0004F35E /* GOTTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842720BC306B0004F35E /* GOTTextCell.swift */; };
+		9BA5842A20BC30A20004F35E /* GOTBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842920BC30A20004F35E /* GOTBaseCell.swift */; };
+		9BA5842E20BC35760004F35E /* GOTCellDataModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842D20BC35760004F35E /* GOTCellDataModelProtocols.swift */; };
+		9BA5843020BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */; };
+		9BA5843220BC3FBC0004F35E /* GOTHouseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */; };
+		9BA5843420BC508A0004F35E /* GOTBaseReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */; };
+		9BA5843620BC509E0004F35E /* GOTTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +67,14 @@
 		9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTDataModelProtocol.swift; sourceTree = "<group>"; };
 		9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+DataModelParser.swift"; sourceTree = "<group>"; };
 		9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+DataModelParser.swift"; sourceTree = "<group>"; };
+		9BA5841A20BAF3A50004F35E /* String+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Sizing.swift"; sourceTree = "<group>"; };
+		9BA5842720BC306B0004F35E /* GOTTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTTextCell.swift; sourceTree = "<group>"; };
+		9BA5842920BC30A20004F35E /* GOTBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBaseCell.swift; sourceTree = "<group>"; };
+		9BA5842D20BC35760004F35E /* GOTCellDataModelProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTCellDataModelProtocols.swift; sourceTree = "<group>"; };
+		9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTHouseDataModel+TextCellProtocol.swift"; sourceTree = "<group>"; };
+		9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTHouseCollectionViewController.swift; sourceTree = "<group>"; };
+		9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBaseReusableView.swift; sourceTree = "<group>"; };
+		9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTTextReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +159,7 @@
 		9B7A275320B909A200AE3C57 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */,
 				9B7A275720B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift */,
 			);
 			path = Controllers;
@@ -160,6 +177,11 @@
 		9B7A275520B909B400AE3C57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9BA5842920BC30A20004F35E /* GOTBaseCell.swift */,
+				9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */,
+				9BA5842D20BC35760004F35E /* GOTCellDataModelProtocols.swift */,
+				9BA5842720BC306B0004F35E /* GOTTextCell.swift */,
+				9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +192,7 @@
 				9B7A276220B93E7C00AE3C57 /* GOTCharacterDataModel.swift */,
 				9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */,
 				9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */,
+				9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +202,7 @@
 			children = (
 				9B7A276C20B945C000AE3C57 /* Array+DataModelParser.swift */,
 				9B7A276A20B9448300AE3C57 /* Dictionary+DataModelParser.swift */,
+				9BA5841A20BAF3A50004F35E /* String+Sizing.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -317,14 +341,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B7A276120B93D3500AE3C57 /* GOTHouseDataModel.swift in Sources */,
+				9BA5842A20BC30A20004F35E /* GOTBaseCell.swift in Sources */,
+				9BA5842E20BC35760004F35E /* GOTCellDataModelProtocols.swift in Sources */,
 				9B7A275E20B937BD00AE3C57 /* GOTAPINetworkService.swift in Sources */,
 				9B7A272620B908E900AE3C57 /* AppDelegate.swift in Sources */,
 				9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */,
+				9BA5843020BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift in Sources */,
+				9BA5843420BC508A0004F35E /* GOTBaseReusableView.swift in Sources */,
 				9B7A276520B9432D00AE3C57 /* GOTDataModelProtocol.swift in Sources */,
+				9BA5843620BC509E0004F35E /* GOTTextReusableView.swift in Sources */,
+				9BA5842820BC306B0004F35E /* GOTTextCell.swift in Sources */,
 				9B7A275C20B90E4000AE3C57 /* GOTNetworkService.swift in Sources */,
 				9B7A276320B93E7C00AE3C57 /* GOTCharacterDataModel.swift in Sources */,
 				9B7A276D20B945C000AE3C57 /* Array+DataModelParser.swift in Sources */,
+				9BA5841B20BAF3A50004F35E /* String+Sizing.swift in Sources */,
 				9B7A275820B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift in Sources */,
+				9BA5843220BC3FBC0004F35E /* GOTHouseCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ class GOTHouseDataModel: GOTDataModelProtocol {
     private(set) var seats: [String]?
     
     private(set) var currentLordURL: URL?
-    private(set) var currentLoard: GOTCharacterDataModel?
+    private(set) var currentLord: GOTCharacterDataModel?
     
     private(set) var heirURL: URL?
     private(set) var heir: GOTCharacterDataModel?
@@ -52,7 +52,7 @@ class GOTHouseDataModel: GOTDataModelProtocol {
         self.words = data["words"] as? String
         self.titles = data["titles"] as? [String]
         self.seats = data["seats"] as? [String]
-        self.currentLordURL = data.url(from: "currentLoard")
+        self.currentLordURL = data.url(from: "currentLord")
         self.heirURL = data.url(from: "heir")
         self.overlordURL = data.url(from: "overloard")
         self.founded = data["founded"] as? String
