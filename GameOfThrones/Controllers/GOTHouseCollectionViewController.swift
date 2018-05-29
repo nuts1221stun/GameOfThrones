@@ -14,48 +14,34 @@ extension GOTHouseDataModel {
         var fields = [String]()
         var fieldsOfURLType = [String]()
         var key: String
-        if let name = self.name, name.count > 0 {
+        if let name = self.name {
             key = "Name"
             dict[key] = [name]
             fields.append(key)
         }
-        if let region = self.region, region.count > 0 {
+        if let region = self.region {
             key = "Region"
             dict[key] = [region]
             fields.append(key)
         }
-        if let coatOfArms = self.coatOfArms, coatOfArms.count > 0 {
+        if let coatOfArms = self.coatOfArms {
             key = "Coat of arms"
             dict[key] = [coatOfArms]
             fields.append(key)
         }
-        if let words = self.words, words.count > 0 {
+        if let words = self.words {
             key = "Words"
             dict[key] = [words]
             fields.append(key)
         }
         if let titles = self.titles {
-            var filteredTitles = [String]()
-            for title in titles {
-                if title.count == 0 {
-                    continue
-                }
-                filteredTitles.append(title)
-            }
             key = "Titles"
-            dict[key] = filteredTitles
+            dict[key] = titles
             fields.append(key)
         }
         if let seats = self.seats {
-            var filteredSeats = [String]()
-            for seat in seats {
-                if seat.count == 0 {
-                    continue
-                }
-                filteredSeats.append(seat)
-            }
             key = "Seats"
-            dict[key] = filteredSeats
+            dict[key] = seats
             fields.append(key)
         }
         if let currentLordURL = self.currentLordURL {
@@ -76,7 +62,7 @@ extension GOTHouseDataModel {
             fields.append(key)
             fieldsOfURLType.append(key)
         }
-        if let founded = self.founded, founded.count > 0 {
+        if let founded = self.founded {
             key = "Founded"
             dict[key] = [founded]
             fields.append(key)
@@ -87,21 +73,14 @@ extension GOTHouseDataModel {
             fields.append(key)
             fieldsOfURLType.append(key)
         }
-        if let diedOut = self.diedOut, diedOut.count > 0 {
+        if let diedOut = self.diedOut {
             key = "Died out"
             dict[key] = [diedOut]
             fields.append(key)
         }
         if let ancestralWeapons = self.ancestralWeapons {
-            var filteredWeapons = [String]()
-            for weapon in ancestralWeapons {
-                if weapon.count == 0 {
-                    continue
-                }
-                filteredWeapons.append(weapon)
-            }
             key = "Ancestral weapons"
-            dict[key] = filteredWeapons
+            dict[key] = ancestralWeapons
             fields.append(key)
         }
         if let cadetBranchURLs = self.cadetBranchURLs {

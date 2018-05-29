@@ -19,10 +19,10 @@ extension Dictionary {
         return URL.init(string: urlString)
     }
     func urls(from field: String!) -> [URL]? {
-        guard let data = self as? [String: [String]] else {
+        guard let data = self as? [String: Any] else {
             return nil
         }
-        guard let urlStrings = data[field] else {
+        guard let urlStrings = data[field] as? [String] else {
             return nil
         }
         var urls = [URL]()
@@ -32,6 +32,32 @@ extension Dictionary {
             }
             urls.append(url)
         }
-        return urls
+        return urls.count == 0 ? nil : urls
+    }
+    func string(from field: String!) -> String? {
+        guard let data = self as? [String: Any],
+            let string = data[field] as? String else {
+            return nil
+        }
+        if string.count == 0 {
+            return nil
+        }
+        return string
+    }
+    func strings(from field: String!) -> [String]? {
+        guard let data = self as? [String: Any] else {
+            return nil
+        }
+        guard let strings = data[field] as? [String] else {
+            return nil
+        }
+        var filteredStrings = [String]()
+        for string in strings {
+            if string.count == 0 {
+                continue
+            }
+            filteredStrings.append(string)
+        }
+        return filteredStrings.count == 0 ? nil : filteredStrings
     }
 }

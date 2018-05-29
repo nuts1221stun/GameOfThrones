@@ -46,18 +46,19 @@ class GOTHouseDataModel: GOTDataModelProtocol {
             return
         }
         self.url = data.url(from: "url")
-        self.name = data["name"] as? String
-        self.region = data["region"] as? String
-        self.coatOfArms = data["coatOfArms"] as? String
-        self.words = data["words"] as? String
-        self.titles = data["titles"] as? [String]
-        self.seats = data["seats"] as? [String]
+        
+        self.name = data.string(from: "name")
+        self.region = data.string(from: "region")
+        self.coatOfArms = data.string(from: "coatOfArms")
+        self.words = data.string(from: "words")
+        self.titles = data.strings(from: "titles")
+        self.seats = data.strings(from: "seats")
         self.currentLordURL = data.url(from: "currentLord")
         self.heirURL = data.url(from: "heir")
         self.overlordURL = data.url(from: "overloard")
-        self.founded = data["founded"] as? String
-        self.diedOut = data["diedOut"] as? String
-        self.ancestralWeapons = data["ancestralWeapons"] as? [String]
+        self.founded = data.string(from: "founded")
+        self.diedOut = data.string(from: "diedOut")
+        self.ancestralWeapons = data.strings(from: "ancestralWeapons")
         self.cadetBranchURLs = data.urls(from: "cadetBranches")
         self.swornMemberURLs = data.urls(from: "swornMembers")
     }

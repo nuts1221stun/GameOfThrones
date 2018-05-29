@@ -16,7 +16,7 @@ class GOTAPINetworkService {
     
     func fetchHouseList(withPage page: Int?,
                         pageSize: Int?,
-                        callback: @escaping ([[String: Any]]?, Error?) -> Void) {
+                        callback: @escaping ([GOTHouseDataModel]?, Error?) -> Void) {
         
         let url = URL.init(string: "houses", relativeTo: baseURL)
         let query = self.pageQuery(fromPage: page, pageSize: pageSize)
@@ -25,10 +25,11 @@ class GOTAPINetworkService {
                 callback(nil, error)
                 return
             }
-            guard let houses = response as? [[String: Any]] else {
+            guard let houseDicts = response as? [[String: Any]] else {
                 callback(nil, GOTNetwokServiceError.InvalidResponse)
                 return
             }
+            let houses = houseDicts.dataModels(withType: GOTHouseDataModel.self)
             callback(houses, nil)
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class GOTHouseListCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    private let housesPerBatch = 10
     private var houses = [GOTHouseDataModel]()
     private var isFetchComplete = false
     
@@ -43,10 +44,10 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
         if isFetchComplete {
             return
         }
-        let page = Int(floor(Double(self.houses.count) / 10)) + 1
-        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: 10) { [weak weakSelf = self] (houseDicts, error) in
-            if let houses = houseDicts?.dataModels(withType: GOTHouseDataModel.self) {
-                if houses.count < 10 {
+        let page = Int(floor(Double(self.houses.count) / Double(housesPerBatch))) + 1
+        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: housesPerBatch) { [weak weakSelf = self] (houses, error) in
+            if let houses = houses {
+                if houses.count < self.housesPerBatch {
                     weakSelf?.isFetchComplete = true
                 }
                 weakSelf?.houses += houses
