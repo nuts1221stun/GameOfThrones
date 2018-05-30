@@ -9,5 +9,6 @@
 import Foundation
 
 protocol GOTDataModelProtocol {
+    var name: String? { get }
     init(data: [String: Any]?)
 }

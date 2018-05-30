@@ -9,25 +9,27 @@
 import Foundation
 
 extension Dictionary {
-    func url(from field: String!) -> URL? {
+    func url(from field: String!) -> GOTURL? {
         guard let data = self as? [String: Any] else {
             return nil
         }
-        guard let urlString = data[field] as? String else {
+        guard let urlString = data[field] as? String,
+        urlString.count > 0 else {
             return nil
         }
-        return URL.init(string: urlString)
+        return GOTURL.init(url: urlString)
     }
-    func urls(from field: String!) -> [URL]? {
+    func urls(from field: String!) -> [GOTURL]? {
         guard let data = self as? [String: Any] else {
             return nil
         }
         guard let urlStrings = data[field] as? [String] else {
             return nil
         }
-        var urls = [URL]()
+        var urls = [GOTURL]()
         for urlString in urlStrings {
-            guard let url = URL.init(string: urlString) else {
+            guard urlString.count > 0,
+                let url = GOTURL.init(url: urlString)else {
                 continue
             }
             urls.append(url)

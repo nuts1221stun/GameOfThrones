@@ -102,6 +102,7 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let house = self.houses[indexPath.item]
+        // TODO: refactor this to navigation manager
         let vc = GOTHouseCollectionViewController.init(house: house)
         self.navigationController?.pushViewController(vc, animated: true)
     }

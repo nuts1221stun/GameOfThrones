@@ -28,6 +28,7 @@
 		9BA5843220BC3FBC0004F35E /* GOTHouseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */; };
 		9BA5843420BC508A0004F35E /* GOTBaseReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */; };
 		9BA5843620BC509E0004F35E /* GOTTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */; };
+		9BFE752E20BE1D9300F2F4A3 /* GOTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTHouseCollectionViewController.swift; sourceTree = "<group>"; };
 		9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBaseReusableView.swift; sourceTree = "<group>"; };
 		9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTTextReusableView.swift; sourceTree = "<group>"; };
+		9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */,
 				9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */,
 				9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */,
+				9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				9BA5842A20BC30A20004F35E /* GOTBaseCell.swift in Sources */,
 				9BA5842E20BC35760004F35E /* GOTCellDataModelProtocols.swift in Sources */,
 				9B7A275E20B937BD00AE3C57 /* GOTAPINetworkService.swift in Sources */,
+				9BFE752E20BE1D9300F2F4A3 /* GOTURL.swift in Sources */,
 				9B7A272620B908E900AE3C57 /* AppDelegate.swift in Sources */,
 				9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */,
 				9BA5843020BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift in Sources */,

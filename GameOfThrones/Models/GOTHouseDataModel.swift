@@ -10,7 +10,7 @@ import Foundation
 
 class GOTHouseDataModel: GOTDataModelProtocol {
     
-    private(set) var url: URL?
+    private(set) var url: GOTURL?
     private(set) var name: String?
     private(set) var region: String?
     private(set) var coatOfArms: String?
@@ -18,27 +18,27 @@ class GOTHouseDataModel: GOTDataModelProtocol {
     private(set) var titles: [String]?
     private(set) var seats: [String]?
     
-    private(set) var currentLordURL: URL?
+    private(set) var currentLordURL: GOTURL?
     private(set) var currentLord: GOTCharacterDataModel?
     
-    private(set) var heirURL: URL?
+    private(set) var heirURL: GOTURL?
     private(set) var heir: GOTCharacterDataModel?
     
-    private(set) var overlordURL: URL?
+    private(set) var overlordURL: GOTURL?
     private(set) var overlord: GOTHouseDataModel?
     
     private(set) var founded: String?
     
-    private(set) var founderURL: URL?
+    private(set) var founderURL: GOTURL?
     private(set) var founder: GOTHouseDataModel?
     
     private(set) var diedOut: String?
     private(set) var ancestralWeapons: [String]?
     
-    private(set) var cadetBranchURLs: [URL]?
+    private(set) var cadetBranchURLs: [GOTURL]?
     private(set) var cadetBranches: [GOTHouseDataModel]?
     
-    private(set) var swornMemberURLs: [URL]?
+    private(set) var swornMemberURLs: [GOTURL]?
     private(set) var swornMembers: [GOTCharacterDataModel]?
     
     required init(data: [String: Any]?) {
