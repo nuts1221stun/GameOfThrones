@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let navigationController = UINavigationController.init(rootViewController: GOTHouseListCollectionViewController.init())
+//        let navigationController = UINavigationController.init(rootViewController: GOTListCollectionViewController<GOTCharacterDataModel>.init())
+        let navigationController = UINavigationController.init(rootViewController: GOTEntryViewController.init())
         GOTNavigationManager.shared.navigationController = navigationController
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)

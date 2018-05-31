@@ -10,6 +10,9 @@ import Foundation
 
 class GOTHouseDataModel: GOTDataModelProtocol {
     
+    private(set) static var listTitle = "Houses"
+    private(set) static var requestURLPathName = "houses"
+    
     private(set) var url: GOTURL?
     private(set) var name: String?
     private(set) var region: String?

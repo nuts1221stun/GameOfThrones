@@ -10,6 +10,8 @@ import Foundation
 
 protocol GOTDataModelProtocol {
     var name: String? { get }
+    static var listTitle: String { get }
+    static var requestURLPathName: String { get }
     init(data: [String: Any]?)
 }
 

@@ -14,23 +14,23 @@ class GOTAPINetworkService {
     
     let baseURL = URL.init(string: "https://www.anapioficeandfire.com/api/")
     
-    func fetchHouseList(withPage page: Int?,
-                        pageSize: Int?,
-                        callback: @escaping ([GOTHouseDataModel]?, Error?) -> Void) {
-        
-        let url = URL.init(string: "houses", relativeTo: baseURL)
+    func fetchList<T: GOTDataModelProtocol>(withPage page: Int?,
+                                            pageSize: Int?,
+                                            dataType: T.Type,
+                                            callback: @escaping ([T]?, Error?) -> Void) -> Void {
+        let url = URL.init(string: dataType.requestURLPathName, relativeTo: baseURL)
         let query = self.pageQuery(fromPage: page, pageSize: pageSize)
         GOTNetworkService.shared.request(withMethod: .GET, url: url, query: query, HTTPBody: nil, usesCookies: true) { (response, error) in
             if error != nil {
                 callback(nil, error)
                 return
             }
-            guard let houseDicts = response as? [[String: Any]] else {
+            guard let itemDicts = response as? [[String: Any]] else {
                 callback(nil, GOTNetwokServiceError.InvalidResponse)
                 return
             }
-            let houses = houseDicts.dataModels(withType: GOTHouseDataModel.self)
-            callback(houses, nil)
+            let items = itemDicts.dataModels(withType: dataType)
+            callback(items, nil)
         }
     }
     

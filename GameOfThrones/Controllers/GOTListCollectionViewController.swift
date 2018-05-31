@@ -1,21 +1,23 @@
 //
-//  GOTHouseListCollectionViewController.swift
+//  GOTListCollectionViewController.swift
 //  GameOfThrones
 //
-//  Created by Li-Erh Chang on 26/05/2018.
+//  Created by Li-Erh Chang on 31/05/2018.
 //  Copyright © 2018 nuts. All rights reserved.
 //
 
 import UIKit
 
-class GOTHouseListCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
-    private let housesPerBatch = 10
-    private var houses = [GOTHouseDataModel]()
+class GOTListCollectionViewController<T: GOTDataModelProtocol & GOTTextCellDataModelProtocol>: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    private let itemsPerBatch = 10
+    private var items = [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)]()
     private var isFetchComplete = false
+//    private var dataType: T.Type!
     
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout.init())
+//        self.dataType = dataType
     }
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -29,11 +31,12 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = "Houses"
+        
+//        self.navigationItem.title = "Houses"
+        self.navigationItem.title = T.listTitle
         
         self.collectionView?.contentInset = UIEdgeInsets.init(top: 8, left: 0, bottom: 8, right: 0)
         self.collectionView?.showsVerticalScrollIndicator = false
@@ -42,53 +45,65 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
         self.collectionView!.register(GOTTextCell.self, forCellWithReuseIdentifier: GOTTextCell.reuseIdentifier())
         self.collectionView?.backgroundColor = UIColor.white
         
-        self.fetchHouseList()
+        self.fetchItemList()
     }
     
-    func fetchHouseList() {
+    func fetchItemList() {
         if isFetchComplete {
             return
         }
-        let page = Int(floor(Double(self.houses.count) / Double(housesPerBatch))) + 1
-        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: housesPerBatch) { [weak weakSelf = self] (houses, error) in
-            if let houses = houses {
-                if houses.count < self.housesPerBatch {
+        let page = Int(floor(Double(self.items.count) / Double(self.itemsPerBatch))) + 1
+        GOTAPINetworkService.shared.fetchList(withPage: page, pageSize: itemsPerBatch, dataType: T.self) { [weak weakSelf = self] (items, error) in
+            if let items = items as? [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)] {
+                if items.count < self.itemsPerBatch {
                     weakSelf?.isFetchComplete = true
                 }
-                weakSelf?.houses += houses
+                weakSelf?.items += items
                 DispatchQueue.main.async {
                     weakSelf?.collectionView?.reloadData()
                 }
             }
         }
+//
+//        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: itemsPerBatch) { [weak weakSelf = self] (items, error) in
+//            if let items = items as? [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)] {
+//                if items.count < self.itemsPerBatch {
+//                    weakSelf?.isFetchComplete = true
+//                }
+//                weakSelf?.items += items
+//                DispatchQueue.main.async {
+//                    weakSelf?.collectionView?.reloadData()
+//                }
+//            }
+//        }
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.houses.count
+        return self.items.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GOTTextCell.reuseIdentifier(), for: indexPath)
         
         guard let textCell = cell as? GOTTextCell else {
             return cell
         }
-        let house = self.houses[indexPath.item]
-        textCell.populate(with: house)
-    
+        let item = self.items[indexPath.item]
+        textCell.populate(with: item)
+        
         return textCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let house = self.houses[indexPath.item]
-        return GOTTextCell.sizeThatFits(CGSize.init(width: collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude), dataModel: house)
+        let item = self.items[indexPath.item]
+        return GOTTextCell.sizeThatFits(CGSize.init(width: collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude), dataModel: item)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -102,18 +117,20 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-
+    
     // MARK: UICollectionViewDelegate
-
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let house = self.houses[indexPath.item]
-        GOTNavigationManager.shared.showItem(house)
+        guard let item = self.items[indexPath.item] as? (GOTDataModelProtocol & GOTFormattedDataModelProtocol) else {
+            return
+        }
+        GOTNavigationManager.shared.showItem(item)
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if self.houses.count - indexPath.item > 1 {
+        if self.items.count - indexPath.item > 1 {
             return
         }
-        self.fetchHouseList()
+        self.fetchItemList()
     }
 }

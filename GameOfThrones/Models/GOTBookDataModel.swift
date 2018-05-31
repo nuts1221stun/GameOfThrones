@@ -10,6 +10,9 @@ import Foundation
 
 class GOTBookDataModel: GOTDataModelProtocol {
     
+    private(set) static var listTitle = "Books"
+    private(set) static var requestURLPathName = "books"
+    
     private(set) var url: GOTURL?
     private(set) var name: String?
     private(set) var isbn: String?
@@ -36,7 +39,17 @@ class GOTBookDataModel: GOTDataModelProtocol {
         self.publisher = data.string(from: "publisher")
         self.country = data.string(from: "country")
         self.mediaType = data.string(from: "mediaType")
-        self.released = data.string(from: "released")
+        if let released = data.string(from: "released") {
+            let fromDateFormatter = DateFormatter()
+            fromDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let toDateFormatter = DateFormatter()
+            toDateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            if let date = fromDateFormatter.date(from: released) {
+                self.released = toDateFormatter.string(from: date)
+            }
+        }
         self.characterURLs = data.urls(from: "characters")
         self.povCharacterURLs = data.urls(from: "povCharacters")
     }

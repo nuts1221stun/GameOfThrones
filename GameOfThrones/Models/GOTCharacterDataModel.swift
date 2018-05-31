@@ -10,6 +10,9 @@ import Foundation
 
 class GOTCharacterDataModel: GOTDataModelProtocol {
     
+    private(set) static var listTitle = "Characters"
+    private(set) static var requestURLPathName = "characters"
+    
     private(set) var url: GOTURL?
     private(set) var name: String?
     private(set) var gender: String?
@@ -47,5 +50,11 @@ class GOTCharacterDataModel: GOTDataModelProtocol {
         self.povBookURLs = data.urls(from: "povBooks")
         self.tvSeries = data.strings(from: "tvSeries")
         self.playedBy = data.strings(from: "playedBy")
+        
+        if self.name == nil,
+            let aliases = self.aliases,
+            aliases.count > 0 {
+            self.name = "(\(aliases[0]))"
+        }
     }
 }
