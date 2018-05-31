@@ -74,6 +74,26 @@ class GOTAPINetworkService {
         }
     }
     
+    func fetchBook(withURL url: URL?,
+                   callback: @escaping (GOTBookDataModel?, Error?) -> Void) {
+        guard let url = url else {
+            callback(nil, GOTNetwokServiceError.InvalidRequest)
+            return
+        }
+        GOTNetworkService.shared.request(withMethod: .GET, url: url, query: nil, HTTPBody: nil, usesCookies: true) { (response, error) in
+            if error != nil {
+                callback(nil, error)
+                return
+            }
+            guard let bookDict = response as? [String: Any] else {
+                callback(nil, GOTNetwokServiceError.InvalidResponse)
+                return
+            }
+            let book = GOTBookDataModel.init(data: bookDict)
+            callback(book, nil)
+        }
+    }
+    
     func pageQuery(fromPage page: Int?, pageSize: Int?) -> [String: Any]! {
         var query = [String: Any]()
         if let page = page {

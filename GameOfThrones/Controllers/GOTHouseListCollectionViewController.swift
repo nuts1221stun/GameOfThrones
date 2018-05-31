@@ -33,7 +33,12 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register cell classes
+        self.navigationItem.title = "Houses"
+        
+        self.collectionView?.contentInset = UIEdgeInsets.init(top: 8, left: 0, bottom: 8, right: 0)
+        self.collectionView?.showsVerticalScrollIndicator = false
+        self.collectionView?.showsHorizontalScrollIndicator = false
+        
         self.collectionView!.register(GOTTextCell.self, forCellWithReuseIdentifier: GOTTextCell.reuseIdentifier())
         self.collectionView?.backgroundColor = UIColor.white
         
@@ -102,9 +107,7 @@ class GOTHouseListCollectionViewController: UICollectionViewController, UICollec
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let house = self.houses[indexPath.item]
-        // TODO: refactor this to navigation manager
-        let vc = GOTHouseCollectionViewController.init(house: house)
-        self.navigationController?.pushViewController(vc, animated: true)
+        GOTNavigationManager.shared.showItem(house)
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

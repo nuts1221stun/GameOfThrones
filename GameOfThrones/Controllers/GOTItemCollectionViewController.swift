@@ -1,117 +1,28 @@
 //
-//  GOTHouseCollectionViewController.swift
+//  GOTItemCollectionViewController.swift
 //  GameOfThrones
 //
-//  Created by Li-Erh Chang on 28/05/2018.
+//  Created by Li-Erh Chang on 31/05/2018.
 //  Copyright © 2018 nuts. All rights reserved.
 //
 
 import UIKit
 
-extension GOTHouseDataModel {
-    func data() -> (dictionary: [String: [Any]], fields: [String], fieldsOfURLType: Set<String>) {
-        var dict = [String: [Any]]()
-        var fields = [String]()
-        var fieldsOfURLType = Set<String>.init()
-        var key: String
-        if let name = self.name {
-            key = "Name"
-            dict[key] = [name]
-            fields.append(key)
-        }
-        if let region = self.region {
-            key = "Region"
-            dict[key] = [region]
-            fields.append(key)
-        }
-        if let coatOfArms = self.coatOfArms {
-            key = "Coat of arms"
-            dict[key] = [coatOfArms]
-            fields.append(key)
-        }
-        if let words = self.words {
-            key = "Words"
-            dict[key] = [words]
-            fields.append(key)
-        }
-        if let titles = self.titles {
-            key = "Titles"
-            dict[key] = titles
-            fields.append(key)
-        }
-        if let seats = self.seats {
-            key = "Seats"
-            dict[key] = seats
-            fields.append(key)
-        }
-        if let currentLordURL = self.currentLordURL {
-            key = "Current lord"
-            dict[key] = [currentLordURL]
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        if let heirURL = self.heirURL {
-            key = "Heir"
-            dict[key] = [heirURL]
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        if let overlordURL = self.overlordURL {
-            key = "Overlord"
-            dict[key] = [overlordURL]
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        if let founded = self.founded {
-            key = "Founded"
-            dict[key] = [founded]
-            fields.append(key)
-        }
-        if let founderURL = self.founderURL {
-            key = "Founder"
-            dict[key] = [founderURL]
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        if let diedOut = self.diedOut {
-            key = "Died out"
-            dict[key] = [diedOut]
-            fields.append(key)
-        }
-        if let ancestralWeapons = self.ancestralWeapons {
-            key = "Ancestral weapons"
-            dict[key] = ancestralWeapons
-            fields.append(key)
-        }
-        if let cadetBranchURLs = self.cadetBranchURLs {
-            key = "Cadet branches"
-            dict[key] = cadetBranchURLs
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        if let swornMemberURLs = self.swornMemberURLs {
-            key = "Sworn members"
-            dict[key] = swornMemberURLs
-            fields.append(key)
-            fieldsOfURLType.insert(key)
-        }
-        return (dict, fields, fieldsOfURLType)
-    }
-}
+private let reuseIdentifier = "Cell"
 
-class GOTHouseCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class GOTItemCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    private var houseDict: [String: [Any]]?
+    private var itemDict: [String: [Any]]?
     private var fields: [String]?
     private var fieldsOfURLType: Set<String>?
-    private var house: GOTHouseDataModel?
+    private var item: (GOTDataModelProtocol & GOTFormattedDataModelProtocol)?
     
-    convenience init(house: GOTHouseDataModel?) {
+    convenience init(item: (GOTDataModelProtocol & GOTFormattedDataModelProtocol)?) {
         self.init(collectionViewLayout: UICollectionViewFlowLayout.init())
-        if let house = house {
-            self.house = house
-            let data = house.data()
-            self.houseDict = data.dictionary
+        if let item = item {
+            self.item = item
+            let data = item.data()
+            self.itemDict = data.dictionary
             self.fields = data.fields
             self.fieldsOfURLType = data.fieldsOfURLType
         }
@@ -132,11 +43,15 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register cell classes
+        self.navigationItem.title = self.item?.name
+    
+        self.collectionView?.contentInset = UIEdgeInsets.init(top: 8, left: 0, bottom: 8, right: 0)
+        self.collectionView?.showsVerticalScrollIndicator = false
+        self.collectionView?.showsHorizontalScrollIndicator = false
+    
         self.collectionView!.register(GOTTextCell.self, forCellWithReuseIdentifier: GOTTextCell.reuseIdentifier())
         self.collectionView!.register(GOTTextReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: GOTTextReusableView.reuseIdentifier())
         self.collectionView?.backgroundColor = UIColor.white
-        
         
         self.collectionView?.reloadData()
     }
@@ -152,18 +67,14 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if let fieldsOfURLType = self.fieldsOfURLType, let fields = self.fields,
-//            fieldsOfURLType.contains(fields[section]) {
-//            return 0
-//        }
-        guard let houseDict = self.houseDict,
+        guard let itemDict = self.itemDict,
             let fields = self.fields else {
-            return 0
+                return 0
         }
-        if let strings = houseDict[fields[section]] as? [String] {
+        if let strings = itemDict[fields[section]] as? [String] {
             return strings.count
         }
-        if let models = houseDict[fields[section]] as? [GOTDataModelProtocol] {
+        if let models = itemDict[fields[section]] as? [GOTDataModelProtocol] {
             return models.count
         }
         return 0
@@ -177,7 +88,7 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
         }
         
         guard let textView = view as? GOTTextReusableView,
-        let fields = self.fields else {
+            let fields = self.fields else {
                 return view
         }
         let data = fields[indexPath.section]
@@ -189,15 +100,15 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GOTTextCell.reuseIdentifier(), for: indexPath)
         guard let textCell = cell as? GOTTextCell,
-            let houseDict = self.houseDict,
+            let itemDict = self.itemDict,
             let fields = self.fields else {
-            return cell
+                return cell
         }
-        if let string = houseDict[fields[indexPath.section]]?[indexPath.item] as? String {
+        if let string = itemDict[fields[indexPath.section]]?[indexPath.item] as? String {
             textCell.populate(with: string)
         }
-        if let model = houseDict[fields[indexPath.section]]?[indexPath.item] as? GOTDataModelProtocol {
-            textCell.populate(with: model.name)
+        if let model = itemDict[fields[indexPath.section]]?[indexPath.item] as? GOTTextCellDataModelProtocol {
+            textCell.populate(with: model)
         }
         
         return textCell
@@ -213,15 +124,15 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let houseDict = self.houseDict,
+        guard let itemDict = self.itemDict,
             let fields = self.fields else {
-            return CGSize.zero
+                return CGSize.zero
         }
         var text: String?
-        if let string = houseDict[fields[indexPath.section]]?[indexPath.item] as? String {
+        if let string = itemDict[fields[indexPath.section]]?[indexPath.item] as? String {
             text = string
         }
-        if let model = houseDict[fields[indexPath.section]]?[indexPath.item] as? GOTDataModelProtocol {
+        if let model = itemDict[fields[indexPath.section]]?[indexPath.item] as? GOTDataModelProtocol {
             text = model.name
         }
         guard let _ = text else {
@@ -247,15 +158,15 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
     
     override func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         guard elementKind == UICollectionElementKindSectionHeader,
-            var houseDict = self.houseDict,
+            var itemDict = self.itemDict,
             let fieldsOfURLType = self.fieldsOfURLType,
             let fields = self.fields,
             fieldsOfURLType.contains(fields[indexPath.section]) else {
-            return
+                return
         }
-        guard let urls = houseDict[fields[indexPath.section]] as? [GOTURL],
+        guard let urls = itemDict[fields[indexPath.section]] as? [GOTURL],
             urls.count > 0 else {
-            return
+                return
         }
         if urls[0].dataType == GOTHouseDataModel.self {
             var houses = [GOTHouseDataModel]()
@@ -265,8 +176,9 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
                 guard houses.count > 0 else {
                     return
                 }
-                weakSelf?.houseDict?[fields[indexPath.section]] = houses
-                collectionView.reloadSections(IndexSet(indexPath.section...indexPath.section))
+                weakSelf?.itemDict?[fields[indexPath.section]] = houses
+//                collectionView.reloadSections(IndexSet(indexPath.section...indexPath.section))
+                collectionView.reloadData()
             }
             for url in urls {
                 dispatchGroup.enter()
@@ -286,8 +198,9 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
                 guard characters.count > 0 else {
                     return
                 }
-                weakSelf?.houseDict?[fields[indexPath.section]] = characters
-                collectionView.reloadSections(IndexSet(indexPath.section...indexPath.section))
+                weakSelf?.itemDict?[fields[indexPath.section]] = characters
+//                collectionView.reloadSections(IndexSet(indexPath.section...indexPath.section))
+                collectionView.reloadData()
             }
             for url in urls {
                 dispatchGroup.enter()
@@ -299,18 +212,39 @@ class GOTHouseCollectionViewController: UICollectionViewController, UICollection
                 })
             }
             dispatchGroup.leave()
+        } else if urls[0].dataType == GOTBookDataModel.self {
+            var books = [GOTBookDataModel]()
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            dispatchGroup.notify(queue: .main) { [weak weakSelf = self] in
+                guard books.count > 0 else {
+                    return
+                }
+                weakSelf?.itemDict?[fields[indexPath.section]] = books
+//                collectionView.reloadSections(IndexSet(indexPath.section...indexPath.section))
+                collectionView.reloadData()
+            }
+            for url in urls {
+                dispatchGroup.enter()
+                GOTAPINetworkService.shared.fetchBook(withURL: url.url, callback: { (book, error) in
+                    if let book = book, error == nil {
+                        books.append(book)
+                    }
+                    dispatchGroup.leave()
+                })
+            }
+            dispatchGroup.leave()
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let houseDict = self.houseDict,
+        guard let itemDict = self.itemDict,
             let fields = self.fields else {
                 return
         }
-        // TODO: refactor this to navigation manager
-        if let house = houseDict[fields[indexPath.section]]?[indexPath.item] as? GOTHouseDataModel {
-            let vc = GOTHouseCollectionViewController.init(house: house)
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let item = itemDict[fields[indexPath.section]]?[indexPath.item] as? (GOTDataModelProtocol & GOTFormattedDataModelProtocol) {
+            GOTNavigationManager.shared.showItem(item)
         }
     }
+
 }

@@ -52,10 +52,12 @@ class GOTTextCell: GOTBaseCell {
     }
     
     override func populate(with dataModel: GOTBaseCellDataModelProtocol?) {
-        guard let textDataModel = dataModel as? GOTTextCellDataModelProtocol else {
+        guard let textDataModel = dataModel as? GOTTextCellDataModelProtocol,
+            let text = textDataModel.text else {
             return
         }
-        self.populate(with: textDataModel.text)
+        let formattedText = "\(textDataModel.icon) \(text)"
+        self.populate(with: formattedText)
     }
     
     func populate(with text: String?) {

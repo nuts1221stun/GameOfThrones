@@ -12,3 +12,7 @@ protocol GOTDataModelProtocol {
     var name: String? { get }
     init(data: [String: Any]?)
 }
+
+protocol GOTFormattedDataModelProtocol {
+    func data() -> (dictionary: [String: [Any]], fields: [String], fieldsOfURLType: Set<String>)
+}

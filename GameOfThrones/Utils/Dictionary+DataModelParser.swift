@@ -62,4 +62,11 @@ extension Dictionary {
         }
         return filteredStrings.count == 0 ? nil : filteredStrings
     }
+    func int(from field: String!) -> Int? {
+        guard let data = self as? [String: Any],
+            let num = data[field] as? Int else {
+                return nil
+        }
+        return num
+    }
 }

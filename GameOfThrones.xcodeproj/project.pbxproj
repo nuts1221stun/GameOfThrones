@@ -25,9 +25,16 @@
 		9BA5842A20BC30A20004F35E /* GOTBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842920BC30A20004F35E /* GOTBaseCell.swift */; };
 		9BA5842E20BC35760004F35E /* GOTCellDataModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842D20BC35760004F35E /* GOTCellDataModelProtocols.swift */; };
 		9BA5843020BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */; };
-		9BA5843220BC3FBC0004F35E /* GOTHouseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */; };
 		9BA5843420BC508A0004F35E /* GOTBaseReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */; };
 		9BA5843620BC509E0004F35E /* GOTTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */; };
+		9BE3300020BF781C00B70EA3 /* GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE32FFF20BF781C00B70EA3 /* GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift */; };
+		9BE3300220BF791C00B70EA3 /* GOTBookDataModel+GOTFormattedDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3300120BF791C00B70EA3 /* GOTBookDataModel+GOTFormattedDataModelProtocol.swift */; };
+		9BE3300420BF793300B70EA3 /* GOTBookDataModel+GOTTextCellDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3300320BF793300B70EA3 /* GOTBookDataModel+GOTTextCellDataModelProtocol.swift */; };
+		9BE3300620BF7E3A00B70EA3 /* GOTNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3300520BF7E3A00B70EA3 /* GOTNavigationManager.swift */; };
+		9BF151B520BF7051005E6F93 /* GOTBookDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF151B420BF7051005E6F93 /* GOTBookDataModel.swift */; };
+		9BF151B720BF7215005E6F93 /* GOTHouseDataModel+GOTFormattedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF151B620BF7215005E6F93 /* GOTHouseDataModel+GOTFormattedDataModel.swift */; };
+		9BF151B920BF726C005E6F93 /* GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF151B820BF726C005E6F93 /* GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift */; };
+		9BF151BB20BF7408005E6F93 /* GOTItemCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF151BA20BF7408005E6F93 /* GOTItemCollectionViewController.swift */; };
 		9BFE752E20BE1D9300F2F4A3 /* GOTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,9 +80,16 @@
 		9BA5842920BC30A20004F35E /* GOTBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBaseCell.swift; sourceTree = "<group>"; };
 		9BA5842D20BC35760004F35E /* GOTCellDataModelProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTCellDataModelProtocols.swift; sourceTree = "<group>"; };
 		9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTHouseDataModel+TextCellProtocol.swift"; sourceTree = "<group>"; };
-		9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTHouseCollectionViewController.swift; sourceTree = "<group>"; };
 		9BA5843320BC508A0004F35E /* GOTBaseReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBaseReusableView.swift; sourceTree = "<group>"; };
 		9BA5843520BC509E0004F35E /* GOTTextReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTTextReusableView.swift; sourceTree = "<group>"; };
+		9BE32FFF20BF781C00B70EA3 /* GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift"; sourceTree = "<group>"; };
+		9BE3300120BF791C00B70EA3 /* GOTBookDataModel+GOTFormattedDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTBookDataModel+GOTFormattedDataModelProtocol.swift"; sourceTree = "<group>"; };
+		9BE3300320BF793300B70EA3 /* GOTBookDataModel+GOTTextCellDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTBookDataModel+GOTTextCellDataModelProtocol.swift"; sourceTree = "<group>"; };
+		9BE3300520BF7E3A00B70EA3 /* GOTNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTNavigationManager.swift; sourceTree = "<group>"; };
+		9BF151B420BF7051005E6F93 /* GOTBookDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTBookDataModel.swift; sourceTree = "<group>"; };
+		9BF151B620BF7215005E6F93 /* GOTHouseDataModel+GOTFormattedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTHouseDataModel+GOTFormattedDataModel.swift"; sourceTree = "<group>"; };
+		9BF151B820BF726C005E6F93 /* GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift"; sourceTree = "<group>"; };
+		9BF151BA20BF7408005E6F93 /* GOTItemCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTItemCollectionViewController.swift; sourceTree = "<group>"; };
 		9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOTURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,8 +175,8 @@
 		9B7A275320B909A200AE3C57 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9BA5843120BC3FBC0004F35E /* GOTHouseCollectionViewController.swift */,
 				9B7A275720B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift */,
+				9BF151BA20BF7408005E6F93 /* GOTItemCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -171,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9B7A275D20B937BD00AE3C57 /* GOTAPINetworkService.swift */,
+				9BE3300520BF7E3A00B70EA3 /* GOTNavigationManager.swift */,
 				9B7A275B20B90E4000AE3C57 /* GOTNetworkService.swift */,
 			);
 			path = Services;
@@ -191,9 +206,15 @@
 		9B7A275620B909BD00AE3C57 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9BF151B420BF7051005E6F93 /* GOTBookDataModel.swift */,
+				9BE3300120BF791C00B70EA3 /* GOTBookDataModel+GOTFormattedDataModelProtocol.swift */,
+				9BE3300320BF793300B70EA3 /* GOTBookDataModel+GOTTextCellDataModelProtocol.swift */,
 				9B7A276220B93E7C00AE3C57 /* GOTCharacterDataModel.swift */,
+				9BF151B820BF726C005E6F93 /* GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift */,
+				9BE32FFF20BF781C00B70EA3 /* GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift */,
 				9B7A276420B9432D00AE3C57 /* GOTDataModelProtocol.swift */,
 				9B7A276020B93D3500AE3C57 /* GOTHouseDataModel.swift */,
+				9BF151B620BF7215005E6F93 /* GOTHouseDataModel+GOTFormattedDataModel.swift */,
 				9BA5842F20BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift */,
 				9BFE752D20BE1D9300F2F4A3 /* GOTURL.swift */,
 			);
@@ -349,18 +370,25 @@
 				9B7A275E20B937BD00AE3C57 /* GOTAPINetworkService.swift in Sources */,
 				9BFE752E20BE1D9300F2F4A3 /* GOTURL.swift in Sources */,
 				9B7A272620B908E900AE3C57 /* AppDelegate.swift in Sources */,
+				9BF151BB20BF7408005E6F93 /* GOTItemCollectionViewController.swift in Sources */,
+				9BE3300220BF791C00B70EA3 /* GOTBookDataModel+GOTFormattedDataModelProtocol.swift in Sources */,
 				9B7A276B20B9448300AE3C57 /* Dictionary+DataModelParser.swift in Sources */,
+				9BF151B520BF7051005E6F93 /* GOTBookDataModel.swift in Sources */,
 				9BA5843020BC37EC0004F35E /* GOTHouseDataModel+TextCellProtocol.swift in Sources */,
 				9BA5843420BC508A0004F35E /* GOTBaseReusableView.swift in Sources */,
 				9B7A276520B9432D00AE3C57 /* GOTDataModelProtocol.swift in Sources */,
 				9BA5843620BC509E0004F35E /* GOTTextReusableView.swift in Sources */,
+				9BE3300620BF7E3A00B70EA3 /* GOTNavigationManager.swift in Sources */,
 				9BA5842820BC306B0004F35E /* GOTTextCell.swift in Sources */,
 				9B7A275C20B90E4000AE3C57 /* GOTNetworkService.swift in Sources */,
+				9BE3300420BF793300B70EA3 /* GOTBookDataModel+GOTTextCellDataModelProtocol.swift in Sources */,
 				9B7A276320B93E7C00AE3C57 /* GOTCharacterDataModel.swift in Sources */,
 				9B7A276D20B945C000AE3C57 /* Array+DataModelParser.swift in Sources */,
 				9BA5841B20BAF3A50004F35E /* String+Sizing.swift in Sources */,
 				9B7A275820B90A6900AE3C57 /* GOTHouseListCollectionViewController.swift in Sources */,
-				9BA5843220BC3FBC0004F35E /* GOTHouseCollectionViewController.swift in Sources */,
+				9BE3300020BF781C00B70EA3 /* GOTCharacterDataModel+GOTTextCellDataModelProtocol.swift in Sources */,
+				9BF151B720BF7215005E6F93 /* GOTHouseDataModel+GOTFormattedDataModel.swift in Sources */,
+				9BF151B920BF726C005E6F93 /* GOTCharacterDataModel+GOTFormattedDataModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,4 +14,5 @@ protocol GOTBaseCellDataModelProtocol {
 
 protocol GOTTextCellDataModelProtocol: GOTBaseCellDataModelProtocol {
     var text: String? { get }
+    var icon: String { get }
 }

@@ -21,6 +21,8 @@ class GOTURL {
             dataType = GOTHouseDataModel.self
         } else if url.range(of: "characters") != nil {
             dataType = GOTCharacterDataModel.self
+        } else if url.range(of: "books") != nil {
+            dataType = GOTBookDataModel.self
         } else {
             return nil
         }
