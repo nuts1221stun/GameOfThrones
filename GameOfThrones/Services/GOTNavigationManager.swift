@@ -15,18 +15,8 @@ class GOTNavigationManager {
     
     private init() {}
     
-    func showHouseList() {
-        let vc = GOTListCollectionViewController<GOTHouseDataModel>.init()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func showCharacterList() {
-        let vc = GOTListCollectionViewController<GOTCharacterDataModel>.init()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func showBookList() {
-        let vc = GOTListCollectionViewController<GOTBookDataModel>.init()
+    func showList<T: GOTDataModelProtocol & GOTTextCellDataModelProtocol>(_ dataType: T.Type) {
+        let vc = GOTListCollectionViewController<T>.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

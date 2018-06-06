@@ -88,14 +88,14 @@ class GOTEntryViewController: UIViewController {
     }
 
     @objc func didTapHouseButton() {
-        GOTNavigationManager.shared.showHouseList()
+        GOTNavigationManager.shared.showList(GOTHouseDataModel.self)
     }
 
     @objc func didTapCharacterButton() {
-        GOTNavigationManager.shared.showCharacterList()
+        GOTNavigationManager.shared.showList(GOTCharacterDataModel.self)
     }
     
     @objc func didTapBookButton() {
-        GOTNavigationManager.shared.showBookList()
+        GOTNavigationManager.shared.showList(GOTBookDataModel.self)
     }
 }

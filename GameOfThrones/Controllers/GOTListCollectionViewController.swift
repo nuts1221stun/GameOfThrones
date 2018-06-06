@@ -11,13 +11,11 @@ import UIKit
 class GOTListCollectionViewController<T: GOTDataModelProtocol & GOTTextCellDataModelProtocol>: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     private let itemsPerBatch = 10
-    private var items = [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)]()
+    private var items = [T]()
     private var isFetchComplete = false
-//    private var dataType: T.Type!
     
     convenience init() {
         self.init(collectionViewLayout: UICollectionViewFlowLayout.init())
-//        self.dataType = dataType
     }
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -35,7 +33,6 @@ class GOTListCollectionViewController<T: GOTDataModelProtocol & GOTTextCellDataM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationItem.title = "Houses"
         self.navigationItem.title = T.listTitle
         
         self.collectionView?.contentInset = UIEdgeInsets.init(top: 8, left: 0, bottom: 8, right: 0)
@@ -54,7 +51,7 @@ class GOTListCollectionViewController<T: GOTDataModelProtocol & GOTTextCellDataM
         }
         let page = Int(floor(Double(self.items.count) / Double(self.itemsPerBatch))) + 1
         GOTAPINetworkService.shared.fetchList(withPage: page, pageSize: itemsPerBatch, dataType: T.self) { [weak weakSelf = self] (items, error) in
-            if let items = items as? [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)] {
+            if let items = items {
                 if items.count < self.itemsPerBatch {
                     weakSelf?.isFetchComplete = true
                 }
@@ -64,18 +61,6 @@ class GOTListCollectionViewController<T: GOTDataModelProtocol & GOTTextCellDataM
                 }
             }
         }
-//
-//        GOTAPINetworkService.shared.fetchHouseList(withPage: page, pageSize: itemsPerBatch) { [weak weakSelf = self] (items, error) in
-//            if let items = items as? [(GOTDataModelProtocol & GOTTextCellDataModelProtocol)] {
-//                if items.count < self.itemsPerBatch {
-//                    weakSelf?.isFetchComplete = true
-//                }
-//                weakSelf?.items += items
-//                DispatchQueue.main.async {
-//                    weakSelf?.collectionView?.reloadData()
-//                }
-//            }
-//        }
     }
     
     // MARK: UICollectionViewDataSource
